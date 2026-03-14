@@ -11,7 +11,7 @@ interface Props {
 
 const { name, asin, price, description, rating } = Astro.props;
 const amazonUrl = `https://www.amazon.co.jp/dp/${asin}?tag=${AMAZON_ASSOCIATE_TAG}`;
-const imageUrl = `https://images-na.ssl-images-amazon.com/images/P/${asin}.09.LZZZZZZZ.jpg`;
+// Amazon images require PA-API; use a placeholder with Amazon link instead
 
 const fullStars = rating ? Math.floor(rating) : 0;
 const hasHalf = rating ? rating - fullStars >= 0.5 : false;
@@ -21,13 +21,12 @@ const emptyStars = 5 - fullStars - (hasHalf ? 1 : 0);
 <div class="product-card">
   <div class="product-card-inner">
     <a href={amazonUrl} target="_blank" rel="noopener noreferrer nofollow" class="product-image-link">
-      <img
-        src={imageUrl}
-        alt={name}
-        class="product-image"
-        loading="lazy"
-        onerror="this.style.display='none'"
-      />
+      <div class="product-placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="product-placeholder-icon">
+          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+        </svg>
+        <span class="product-placeholder-text">Amazonで<br/>画像を見る</span>
+      </div>
     </a>
     <div class="product-info">
       <h4 class="product-name">{name}</h4>
@@ -85,13 +84,32 @@ const emptyStars = 5 - fullStars - (hasHalf ? 1 : 0);
     background: #fff;
     border-radius: 0.5rem;
     overflow: hidden;
-    border: 1px solid #f3f4f6;
+    border: 1px solid #e5e7eb;
+    text-decoration: none;
+    transition: border-color 0.2s;
   }
-  .product-image {
+  .product-image-link:hover {
+    border-color: #FF9900;
+  }
+  .product-placeholder {
     width: 100%;
     height: 100%;
-    object-fit: contain;
-    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.375rem;
+  }
+  .product-placeholder-icon {
+    width: 2rem;
+    height: 2rem;
+    opacity: 0.4;
+  }
+  .product-placeholder-text {
+    font-size: 0.625rem;
+    color: #9ca3af;
+    text-align: center;
+    line-height: 1.3;
   }
   .product-info {
     flex: 1;
