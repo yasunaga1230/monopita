@@ -27,8 +27,8 @@ const posts = (await getCollection('posts')).sort(
       />
     </section>
 
-    <section class="py-5 sm:py-6 border-b border-gray-100">
-      <div class="max-w-6xl mx-auto px-6 sm:px-10">
+    <section class="py-8 sm:py-10 border-b border-gray-100">
+      <div class="site-container">
         <nav class="flex gap-4 overflow-x-auto">
           <a href="/" class="text-sm font-medium text-primary whitespace-nowrap no-underline px-3 py-1.5 bg-teal-50 rounded-full">
             すべて
@@ -45,7 +45,7 @@ const posts = (await getCollection('posts')).sort(
       </div>
     </section>
 
-    <main class="max-w-6xl mx-auto px-6 sm:px-10 py-12">
+    <main class="site-container py-12">
       <h2 class="text-xl font-bold text-gray-900 mb-8">最新の記事</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {posts.map((post) => (
