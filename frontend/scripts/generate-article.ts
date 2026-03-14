@@ -9,13 +9,37 @@ if (!GEMINI_API_KEY) {
 
 const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent';
 
-const UNSPLASH_KEYWORDS: Record<string, string> = {
-  desk: 'desk setup workspace',
-  kitchen: 'kitchen cooking gadget',
-  cleaning: 'clean organized home',
-  smartphone: 'smartphone mobile technology',
-  seasonal: 'seasonal lifestyle',
-  other: 'home lifestyle minimal',
+const UNSPLASH_PHOTOS: Record<string, string[]> = {
+  desk: [
+    'photo-1616627577385-5c0c4dab55a5',
+    'photo-1498050108023-c5249f4df085',
+    'photo-1518455027359-f3f8164ba6bd',
+  ],
+  kitchen: [
+    'photo-1556910103-1c02745aae4d',
+    'photo-1590794056226-79ef3a8147e1',
+    'photo-1556909114-f6e7ad7d3136',
+  ],
+  cleaning: [
+    'photo-1527515637462-cee1652e65de',
+    'photo-1558618666-fcd25c85f82e',
+    'photo-1584622650111-993a426fbf0a',
+  ],
+  smartphone: [
+    'photo-1512941937669-90a1b58e7e9c',
+    'photo-1585338107529-13afc5f02586',
+    'photo-1511707171634-5f897ff02aa9',
+  ],
+  seasonal: [
+    'photo-1507525428034-b723cf961d3e',
+    'photo-1490750967868-88aa4f44baee',
+    'photo-1501426026826-31c667bdf23d',
+  ],
+  other: [
+    'photo-1484101403633-562f891dc89a',
+    'photo-1616486338812-3dadae4b4ace',
+    'photo-1513694203232-719a280e022f',
+  ],
 };
 
 const CATEGORIES = [
@@ -179,37 +203,32 @@ products:
 - 本文中で商品名に言及する際は自然な文脈で
 - 最後に「まとめ」セクションを必ず入れる`;
 
-  // Download hero image from Unsplash
-  const imageKeyword = UNSPLASH_KEYWORDS[targetCategorySlug] || 'lifestyle';
-  const imageFilename = `${dateStr}-${randomTheme.toLowerCase().replace(/[^a-z0-9]/g, '-')}.jpg`;
-  const imagePath = path.join(process.cwd(), 'public', 'images', 'posts', imageFilename);
+  // Download images from Unsplash (hero + 2 inline images)
+  const imagesDir = path.join(process.cwd(), 'public', 'images', 'posts');
+  fs.mkdirSync(imagesDir, { recursive: true });
 
-  fs.mkdirSync(path.dirname(imagePath), { recursive: true });
+  const photos = UNSPLASH_PHOTOS[targetCategorySlug] || UNSPLASH_PHOTOS['other'];
+  const downloadedImages: string[] = [];
 
-  const UNSPLASH_IMAGES: Record<string, string> = {
-    desk: 'photo-1593062096033-9a26b09da705',
-    kitchen: 'photo-1556909114-f6e7ad7d3136',
-    cleaning: 'photo-1527515637462-cee1652e65de',
-    smartphone: 'photo-1511707171634-5f897ff02aa9',
-    seasonal: 'photo-1501426026826-31c667bdf23d',
-    other: 'photo-1484101403633-562f891dc89a',
-  };
-
-  console.log('Downloading hero image from Unsplash...');
-  try {
-    const photoId = UNSPLASH_IMAGES[targetCategorySlug] || UNSPLASH_IMAGES['other'];
-    const imgResponse = await fetch(
-      `https://images.unsplash.com/${photoId}?w=1200&h=630&fit=crop`
-    );
-    if (imgResponse.ok && imgResponse.headers.get('content-type')?.includes('image')) {
-      const buffer = Buffer.from(await imgResponse.arrayBuffer());
-      fs.writeFileSync(imagePath, buffer);
-      console.log(`Image saved: ${imagePath}`);
+  console.log('Downloading images from Unsplash...');
+  for (let i = 0; i < photos.length; i++) {
+    const imgFilename = `${dateStr}-${i + 1}.jpg`;
+    const imgPath = path.join(imagesDir, imgFilename);
+    try {
+      const imgResponse = await fetch(
+        `https://images.unsplash.com/${photos[i]}?w=${i === 0 ? 1200 : 800}&h=${i === 0 ? 630 : 450}&fit=crop`
+      );
+      if (imgResponse.ok && imgResponse.headers.get('content-type')?.includes('image')) {
+        const buffer = Buffer.from(await imgResponse.arrayBuffer());
+        fs.writeFileSync(imgPath, buffer);
+        downloadedImages.push(`/images/posts/${imgFilename}`);
+        console.log(`Image ${i + 1} saved: ${imgPath}`);
+      }
+    } catch (e) {
+      console.warn(`Failed to download image ${i + 1}`);
     }
-  } catch (e) {
-    console.warn('Failed to download image, continuing without hero image');
   }
-  const heroImageUrl = fs.existsSync(imagePath) ? `/images/posts/${imageFilename}` : '';
+  const heroImageUrl = downloadedImages[0] || '';
 
   console.log('Calling Gemini API...');
   const articleContent = await callGemini(prompt);
@@ -234,6 +253,22 @@ products:
       /pubDate: "([^"]+)"/,
       `pubDate: "$1"\nheroImage: "${heroImageUrl}"`
     );
+  }
+
+  // Insert inline images after the first and second H2 headings
+  const inlineImages = downloadedImages.slice(1);
+  if (inlineImages.length > 0) {
+    let h2Count = 0;
+    cleanedContent = cleanedContent.replace(/^(## .+)$/gm, (match) => {
+      h2Count++;
+      if (h2Count === 1 && inlineImages[0]) {
+        return `${match}\n\n![](/images/posts/${path.basename(inlineImages[0])})`;
+      }
+      if (h2Count === 3 && inlineImages[1]) {
+        return `![](/images/posts/${path.basename(inlineImages[1])})\n\n${match}`;
+      }
+      return match;
+    });
   }
 
   fs.writeFileSync(filePath, cleanedContent, 'utf-8');
