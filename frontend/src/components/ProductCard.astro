@@ -11,37 +11,164 @@ interface Props {
 
 const { name, asin, price, description, rating } = Astro.props;
 const amazonUrl = `https://www.amazon.co.jp/dp/${asin}?tag=${AMAZON_ASSOCIATE_TAG}`;
+const imageUrl = `https://images-na.ssl-images-amazon.com/images/P/${asin}.09.LZZZZZZZ.jpg`;
 
 const fullStars = rating ? Math.floor(rating) : 0;
 const hasHalf = rating ? rating - fullStars >= 0.5 : false;
+const emptyStars = 5 - fullStars - (hasHalf ? 1 : 0);
 ---
 
-<div class="border border-gray-200 rounded-xl p-4 bg-gray-50 hover:shadow-md transition-shadow my-6">
-  <div class="flex flex-col sm:flex-row gap-4">
-    <div class="flex-1">
-      <h4 class="font-semibold text-gray-900 text-base mb-1">{name}</h4>
-      <p class="text-sm text-gray-600 mb-2">{description}</p>
-      <div class="flex items-center gap-3 mb-3">
-        <span class="text-lg font-bold text-gray-900">{price}</span>
+<div class="product-card">
+  <div class="product-card-inner">
+    <a href={amazonUrl} target="_blank" rel="noopener noreferrer nofollow" class="product-image-link">
+      <img
+        src={imageUrl}
+        alt={name}
+        class="product-image"
+        loading="lazy"
+        onerror="this.style.display='none'"
+      />
+    </a>
+    <div class="product-info">
+      <h4 class="product-name">{name}</h4>
+      <p class="product-description">{description}</p>
+      <div class="product-meta">
+        <span class="product-price">{price}</span>
         {rating && (
-          <div class="flex items-center gap-1">
-            <div class="flex text-amber-400 text-sm">
-              {Array.from({ length: fullStars }).map(() => <span>★</span>)}
-              {hasHalf && <span>★</span>}
-              {Array.from({ length: 5 - fullStars - (hasHalf ? 1 : 0) }).map(() => <span class="text-gray-300">★</span>)}
-            </div>
-            <span class="text-xs text-gray-500">({rating})</span>
-          </div>
+          <span class="product-rating">
+            <span class="stars">
+              {Array.from({ length: fullStars }).map(() => <span class="star-filled">★</span>)}
+              {hasHalf && <span class="star-filled">★</span>}
+              {Array.from({ length: emptyStars }).map(() => <span class="star-empty">★</span>)}
+            </span>
+            <span class="rating-number">({rating})</span>
+          </span>
         )}
       </div>
       <a
         href={amazonUrl}
         target="_blank"
         rel="noopener noreferrer nofollow"
-        class="inline-flex items-center gap-2 px-5 py-2.5 bg-amazon text-white text-sm font-semibold rounded-lg hover:bg-amazon-dark transition-colors no-underline"
+        class="product-button"
       >
         Amazonで見る →
       </a>
     </div>
   </div>
 </div>
+
+<style>
+  .product-card {
+    border: 1px solid #e5e7eb;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    background: #f9fafb;
+    margin-bottom: 1.75rem;
+    transition: box-shadow 0.2s;
+  }
+  .product-card:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  }
+  .product-card:last-child {
+    margin-bottom: 0;
+  }
+  .product-card-inner {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+  }
+  .product-image-link {
+    flex-shrink: 0;
+    display: block;
+    width: 120px;
+    height: 120px;
+    background: #fff;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    border: 1px solid #f3f4f6;
+  }
+  .product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 0.5rem;
+  }
+  .product-info {
+    flex: 1;
+    min-width: 0;
+  }
+  .product-name {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #111827;
+    margin: 0 0 0.5rem 0;
+    line-height: 1.4;
+  }
+  .product-description {
+    font-size: 0.875rem;
+    color: #4b5563;
+    margin: 0 0 0.75rem 0;
+    line-height: 1.5;
+  }
+  .product-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  .product-price {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #111827;
+  }
+  .product-rating {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+  .stars {
+    font-size: 0.875rem;
+  }
+  .star-filled {
+    color: #f59e0b;
+  }
+  .star-empty {
+    color: #d1d5db;
+  }
+  .rating-number {
+    font-size: 0.75rem;
+    color: #6b7280;
+  }
+  .product-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1.25rem;
+    background: #FF9900;
+    color: #fff;
+    font-size: 0.875rem;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .product-button:hover {
+    background: #E68A00;
+  }
+  @media (max-width: 640px) {
+    .product-card-inner {
+      flex-direction: column;
+      align-items: center;
+    }
+    .product-image-link {
+      width: 140px;
+      height: 140px;
+    }
+    .product-info {
+      text-align: center;
+    }
+    .product-meta {
+      justify-content: center;
+    }
+  }
+</style>
