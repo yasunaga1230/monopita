@@ -3,37 +3,37 @@ import { SITE_TITLE } from '../consts';
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="bg-gray-50 border-t border-gray-100 mt-16">
-  <div class="site-container py-16">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+<footer class="site-footer">
+  <div class="site-container footer-inner">
+    <div class="footer-grid">
       <div>
-        <a href="/" class="flex items-center gap-2 no-underline">
-          <img src="/logo.svg" alt="MonoPita" class="w-8 h-8" />
-          <span class="text-xl font-bold text-gray-900">MonoPita</span>
+        <a href="/" style="display:flex;align-items:center;gap:0.5rem;text-decoration:none;">
+          <img src="/logo.svg" alt="MonoPita" style="width:2rem;height:2rem;" />
+          <span style="font-size:1.25rem;font-weight:700;color:#111827;">MonoPita</span>
         </a>
-        <p class="mt-2 text-sm text-gray-500">あなたの暮らしに、ぴったりのモノを。</p>
+        <p style="margin-top:0.75rem;font-size:0.875rem;color:#6b7280;">あなたの暮らしに、ぴったりのモノを。</p>
       </div>
       <div>
-        <h3 class="text-sm font-semibold text-gray-900 mb-4">カテゴリ</h3>
-        <ul class="space-y-3 list-none p-0">
-          <li><a href="/category/desk" class="text-sm text-gray-500 hover:text-primary no-underline">デスク周り・PC周辺</a></li>
-          <li><a href="/category/kitchen" class="text-sm text-gray-500 hover:text-primary no-underline">キッチン便利グッズ</a></li>
-          <li><a href="/category/cleaning" class="text-sm text-gray-500 hover:text-primary no-underline">掃除・収納</a></li>
-          <li><a href="/category/smartphone" class="text-sm text-gray-500 hover:text-primary no-underline">スマホ・モバイル</a></li>
+        <h3 style="font-size:0.875rem;font-weight:600;color:#111827;margin-bottom:1rem;">カテゴリ</h3>
+        <ul class="footer-list">
+          <li><a href="/category/desk" style="font-size:0.875rem;color:#6b7280;text-decoration:none;">デスク周り・PC周辺</a></li>
+          <li><a href="/category/kitchen" style="font-size:0.875rem;color:#6b7280;text-decoration:none;">キッチン便利グッズ</a></li>
+          <li><a href="/category/cleaning" style="font-size:0.875rem;color:#6b7280;text-decoration:none;">掃除・収納</a></li>
+          <li><a href="/category/smartphone" style="font-size:0.875rem;color:#6b7280;text-decoration:none;">スマホ・モバイル</a></li>
         </ul>
       </div>
       <div>
-        <h3 class="text-sm font-semibold text-gray-900 mb-4">サイト情報</h3>
-        <ul class="space-y-3 list-none p-0">
-          <li><a href="/about" class="text-sm text-gray-500 hover:text-primary no-underline">運営者情報</a></li>
-          <li><a href="/privacy" class="text-sm text-gray-500 hover:text-primary no-underline">プライバシーポリシー</a></li>
-          <li><a href="/contact" class="text-sm text-gray-500 hover:text-primary no-underline">お問い合わせ</a></li>
+        <h3 style="font-size:0.875rem;font-weight:600;color:#111827;margin-bottom:1rem;">サイト情報</h3>
+        <ul class="footer-list">
+          <li><a href="/about" style="font-size:0.875rem;color:#6b7280;text-decoration:none;">運営者情報</a></li>
+          <li><a href="/privacy" style="font-size:0.875rem;color:#6b7280;text-decoration:none;">プライバシーポリシー</a></li>
+          <li><a href="/contact" style="font-size:0.875rem;color:#6b7280;text-decoration:none;">お問い合わせ</a></li>
         </ul>
       </div>
     </div>
-    <div class="mt-12 pt-10 border-t border-gray-200 text-center">
-      <p class="text-sm text-gray-400">&copy; {currentYear} {SITE_TITLE}. All rights reserved.</p>
-      <p class="text-xs text-gray-400 mt-1">当サイトはAmazonアソシエイト・プログラムに参加しています。</p>
+    <div class="footer-bottom">
+      <p style="font-size:0.875rem;color:#9ca3af;">&copy; {currentYear} {SITE_TITLE}. All rights reserved.</p>
+      <p style="font-size:0.75rem;color:#9ca3af;margin-top:0.25rem;">当サイトはAmazonアソシエイト・プログラムに参加しています。</p>
     </div>
   </div>
 </footer>
