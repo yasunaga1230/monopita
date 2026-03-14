@@ -1,0 +1,47 @@
+---
+import { AMAZON_ASSOCIATE_TAG } from '../consts';
+
+interface Props {
+  name: string;
+  asin: string;
+  price: string;
+  description: string;
+  rating?: number;
+}
+
+const { name, asin, price, description, rating } = Astro.props;
+const amazonUrl = `https://www.amazon.co.jp/dp/${asin}?tag=${AMAZON_ASSOCIATE_TAG}`;
+
+const fullStars = rating ? Math.floor(rating) : 0;
+const hasHalf = rating ? rating - fullStars >= 0.5 : false;
+---
+
+<div class="border border-gray-200 rounded-xl p-4 bg-gray-50 hover:shadow-md transition-shadow my-6">
+  <div class="flex flex-col sm:flex-row gap-4">
+    <div class="flex-1">
+      <h4 class="font-semibold text-gray-900 text-base mb-1">{name}</h4>
+      <p class="text-sm text-gray-600 mb-2">{description}</p>
+      <div class="flex items-center gap-3 mb-3">
+        <span class="text-lg font-bold text-gray-900">{price}</span>
+        {rating && (
+          <div class="flex items-center gap-1">
+            <div class="flex text-amber-400 text-sm">
+              {Array.from({ length: fullStars }).map(() => <span>★</span>)}
+              {hasHalf && <span>★</span>}
+              {Array.from({ length: 5 - fullStars - (hasHalf ? 1 : 0) }).map(() => <span class="text-gray-300">★</span>)}
+            </div>
+            <span class="text-xs text-gray-500">({rating})</span>
+          </div>
+        )}
+      </div>
+      <a
+        href={amazonUrl}
+        target="_blank"
+        rel="noopener noreferrer nofollow"
+        class="inline-flex items-center gap-2 px-5 py-2.5 bg-amazon text-white text-sm font-semibold rounded-lg hover:bg-amazon-dark transition-colors no-underline"
+      >
+        Amazonで見る →
+      </a>
+    </div>
+  </div>
+</div>

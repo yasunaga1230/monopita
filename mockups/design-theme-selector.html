@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MonoPita デザインテーマセレクター</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      fontFamily: {
+        sans: ['Noto Sans JP', 'sans-serif'],
+      },
+    },
+  },
+}
+</script>
+<style>
+  * { font-family: 'Noto Sans JP', sans-serif; }
+  .theme-panel { display: none; }
+  .theme-panel.active { display: block; }
+  .tab-btn.active-tab { transform: scale(1.05); }
+
+  /* Star rating */
+  .stars { color: #FBBF24; letter-spacing: 2px; }
+
+  /* Smooth transitions */
+  .theme-panel { animation: fadeIn 0.3s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+</style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+
+<!-- Theme Selector Header -->
+<div class="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
+  <div class="max-w-6xl mx-auto px-4 py-4">
+    <h1 class="text-center text-lg md:text-xl font-bold text-gray-800 mb-3">MonoPita デザインテーマ セレクター</h1>
+    <div class="flex justify-center gap-2 md:gap-3 flex-wrap">
+      <button onclick="switchTheme(1)" id="tab-1" class="tab-btn active-tab px-3 py-2 md:px-5 md:py-2.5 rounded-lg text-sm md:text-base font-semibold transition-all duration-200 bg-teal-600 text-white shadow-md">
+        1. Clean Minimal
+      </button>
+      <button onclick="switchTheme(2)" id="tab-2" class="tab-btn px-3 py-2 md:px-5 md:py-2.5 rounded-lg text-sm md:text-base font-semibold transition-all duration-200 bg-gray-200 text-gray-600 hover:bg-gray-300">
+        2. Warm Natural
+      </button>
+      <button onclick="switchTheme(3)" id="tab-3" class="tab-btn px-3 py-2 md:px-5 md:py-2.5 rounded-lg text-sm md:text-base font-semibold transition-all duration-200 bg-gray-200 text-gray-600 hover:bg-gray-300">
+        3. Cool Tech
+      </button>
+      <button onclick="switchTheme(4)" id="tab-4" class="tab-btn px-3 py-2 md:px-5 md:py-2.5 rounded-lg text-sm md:text-base font-semibold transition-all duration-200 bg-gray-200 text-gray-600 hover:bg-gray-300">
+        4. Soft Pastel
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- THEME 1: Clean Minimal -->
+<!-- ============================================================ -->
+<div id="theme-1" class="theme-panel active">
+  <div class="max-w-6xl mx-auto px-4 py-4">
+    <div class="text-center mb-4 py-2 px-4 bg-teal-50 rounded-lg border border-teal-200">
+      <span class="font-bold text-teal-700">Theme 1: Clean Minimal</span>
+      <span class="text-teal-600 text-sm ml-2">- ホワイト基調 + ティールグリーンアクセント。余白たっぷりのミニマルデザイン</span>
+    </div>
+  </div>
+
+  <div class="bg-white min-h-screen">
+    <!-- Header -->
+    <header class="bg-white border-b border-gray-100">
+      <div class="max-w-5xl mx-auto px-4 md:px-8 py-4 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 bg-teal-500 rounded-lg flex items-center justify-center">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+          </div>
+          <span class="text-xl font-bold text-gray-900">Mono<span class="text-teal-600">Pita</span></span>
+        </div>
+        <nav class="hidden md:flex items-center gap-8 text-sm text-gray-600">
+          <a href="#" class="hover:text-teal-600 transition">ホーム</a>
+          <a href="#" class="hover:text-teal-600 transition">ガジェット</a>
+          <a href="#" class="hover:text-teal-600 transition">生活雑貨</a>
+          <a href="#" class="hover:text-teal-600 transition">キッチン</a>
+          <a href="#" class="hover:text-teal-600 transition">アウトドア</a>
+        </nav>
+        <button class="md:hidden text-gray-500">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="bg-gradient-to-br from-white via-teal-50/30 to-white py-16 md:py-24">
+      <div class="max-w-5xl mx-auto px-4 md:px-8 text-center">
+        <p class="text-teal-600 text-sm font-medium tracking-widest mb-4">MONOPITA - LIFESTYLE GOODS & GADGETS</p>
+        <h1 class="text-3xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">あなたの暮らしに、<br>ぴったりのモノを。</h1>
+        <p class="text-gray-500 text-base md:text-lg max-w-xl mx-auto leading-relaxed">本当に使って良かったモノだけを厳選レビュー。<br class="hidden md:block">暮らしをアップグレードするアイテムをお届けします。</p>
+      </div>
+    </section>
+
+    <!-- Article Cards -->
+    <section class="max-w-5xl mx-auto px-4 md:px-8 py-12 md:py-16">
+      <h2 class="text-xl font-bold text-gray-900 mb-8">最新レビュー</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+        <!-- Card 1 -->
+        <article class="group">
+          <div class="aspect-[4/3] bg-gray-100 rounded-xl mb-4 overflow-hidden">
+            <div class="w-full h-full bg-gradient-to-br from-teal-100 to-teal-50 flex items-center justify-center">
+              <svg class="w-12 h-12 text-teal-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            </div>
+          </div>
+          <div class="space-y-2">
+            <span class="inline-block px-2.5 py-0.5 bg-teal-50 text-teal-700 text-xs font-medium rounded-full">ガジェット</span>
+            <h3 class="font-bold text-gray-900 group-hover:text-teal-600 transition leading-snug">【2026年版】在宅ワークが劇的に変わるモニターライト5選</h3>
+            <p class="text-sm text-gray-500 leading-relaxed">目の疲れを軽減し、デスク環境を快適にするモニターライトを徹底比較。実際に1ヶ月使い込んだ結果をお届け。</p>
+            <time class="text-xs text-gray-400">2026.03.10</time>
+          </div>
+        </article>
+        <!-- Card 2 -->
+        <article class="group">
+          <div class="aspect-[4/3] bg-gray-100 rounded-xl mb-4 overflow-hidden">
+            <div class="w-full h-full bg-gradient-to-br from-emerald-100 to-emerald-50 flex items-center justify-center">
+              <svg class="w-12 h-12 text-emerald-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0a1 1 0 01-1-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 01-1 1"/></svg>
+            </div>
+          </div>
+          <div class="space-y-2">
+            <span class="inline-block px-2.5 py-0.5 bg-teal-50 text-teal-700 text-xs font-medium rounded-full">生活雑貨</span>
+            <h3 class="font-bold text-gray-900 group-hover:text-teal-600 transition leading-snug">無印良品を超えた？話題のマグネット収納を全力レビュー</h3>
+            <p class="text-sm text-gray-500 leading-relaxed">SNSで3万いいねを集めた話題のマグネット収納シリーズ。キッチン・浴室で実際に使ってみた本音レポート。</p>
+            <time class="text-xs text-gray-400">2026.03.07</time>
+          </div>
+        </article>
+        <!-- Card 3 -->
+        <article class="group">
+          <div class="aspect-[4/3] bg-gray-100 rounded-xl mb-4 overflow-hidden">
+            <div class="w-full h-full bg-gradient-to-br from-cyan-100 to-cyan-50 flex items-center justify-center">
+              <svg class="w-12 h-12 text-cyan-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+            </div>
+          </div>
+          <div class="space-y-2">
+            <span class="inline-block px-2.5 py-0.5 bg-teal-50 text-teal-700 text-xs font-medium rounded-full">キッチン</span>
+            <h3 class="font-bold text-gray-900 group-hover:text-teal-600 transition leading-snug">時短の神器。全自動コーヒーメーカー3機種を比較した結論</h3>
+            <p class="text-sm text-gray-500 leading-relaxed">豆挽きから抽出まで全自動のコーヒーメーカーを3ヶ月間使い比べ。味・手入れ・コスパの総合評価を公開。</p>
+            <time class="text-xs text-gray-400">2026.03.03</time>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Amazon Product Card -->
+    <section class="max-w-5xl mx-auto px-4 md:px-8 pb-16">
+      <div class="bg-white border border-gray-200 rounded-2xl p-5 md:p-6 flex flex-col md:flex-row gap-5 md:gap-8 items-center shadow-sm">
+        <div class="w-full md:w-48 h-48 bg-gray-50 rounded-xl flex items-center justify-center flex-shrink-0">
+          <svg class="w-16 h-16 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+        </div>
+        <div class="flex-1 text-center md:text-left">
+          <span class="text-xs text-gray-400 mb-1 block">PR - Amazon アフィリエイト</span>
+          <h3 class="font-bold text-gray-900 text-lg mb-2">BenQ ScreenBar Halo モニターライト</h3>
+          <div class="flex items-center justify-center md:justify-start gap-2 mb-2">
+            <span class="stars text-sm">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+            <span class="text-sm text-gray-500">(4.7 / 1,284件)</span>
+          </div>
+          <p class="text-sm text-gray-500 mb-4 leading-relaxed">自動調光＆間接照明モード搭載。モニターに反射しない非対称光学設計で、長時間作業でも目が疲れにくい。</p>
+          <div class="flex items-center justify-center md:justify-start gap-4">
+            <span class="text-2xl font-bold text-gray-900">&yen;15,900</span>
+            <a href="#" class="inline-flex items-center gap-2 px-6 py-2.5 bg-teal-600 hover:bg-teal-700 text-white text-sm font-semibold rounded-lg transition shadow-sm">
+              Amazonで見る
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- THEME 2: Warm Natural -->
+<!-- ============================================================ -->
+<div id="theme-2" class="theme-panel">
+  <div class="max-w-6xl mx-auto px-4 py-4">
+    <div class="text-center mb-4 py-2 px-4 bg-orange-50 rounded-lg border border-orange-200">
+      <span class="font-bold text-orange-800">Theme 2: Warm Natural</span>
+      <span class="text-orange-700 text-sm ml-2">- クリーム/ベージュ基調 + テラコッタオレンジ。温かみのある自然派デザイン</span>
+    </div>
+  </div>
+
+  <div style="background-color: #FDF8F3;" class="min-h-screen">
+    <!-- Header -->
+    <header style="background-color: #FAF5EE;" class="border-b border-orange-100">
+      <div class="max-w-5xl mx-auto px-4 md:px-8 py-4 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-full flex items-center justify-center" style="background-color: #C2410C;">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+          </div>
+          <span class="text-xl font-bold" style="color: #44403C;">Mono<span style="color: #C2410C;">Pita</span></span>
+        </div>
+        <nav class="hidden md:flex items-center gap-8 text-sm" style="color: #78716C;">
+          <a href="#" class="hover:opacity-70 transition">ホーム</a>
+          <a href="#" class="hover:opacity-70 transition">ガジェット</a>
+          <a href="#" class="hover:opacity-70 transition">生活雑貨</a>
+          <a href="#" class="hover:opacity-70 transition">キッチン</a>
+          <a href="#" class="hover:opacity-70 transition">アウトドア</a>
+        </nav>
+        <button class="md:hidden" style="color: #78716C;">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="py-16 md:py-24" style="background: linear-gradient(135deg, #FDF8F3 0%, #FDE8D8 50%, #FDF8F3 100%);">
+      <div class="max-w-5xl mx-auto px-4 md:px-8 text-center">
+        <p class="text-sm font-medium tracking-widest mb-4" style="color: #C2410C;">MONOPITA - LIFESTYLE GOODS & GADGETS</p>
+        <h1 class="text-3xl md:text-5xl font-bold mb-6 leading-tight" style="color: #292524;">あなたの暮らしに、<br>ぴったりのモノを。</h1>
+        <p class="text-base md:text-lg max-w-xl mx-auto leading-relaxed" style="color: #78716C;">本当に使って良かったモノだけを厳選レビュー。<br class="hidden md:block">暮らしをアップグレードするアイテムをお届けします。</p>
+      </div>
+    </section>
+
+    <!-- Article Cards -->
+    <section class="max-w-5xl mx-auto px-4 md:px-8 py-12 md:py-16">
+      <h2 class="text-xl font-bold mb-8" style="color: #292524;">最新レビュー</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+        <article class="group bg-white rounded-2xl overflow-hidden shadow-sm border border-orange-100/50">
+          <div class="aspect-[4/3] overflow-hidden" style="background: linear-gradient(135deg, #FDEAD7, #FEF3C7);">
+            <div class="w-full h-full flex items-center justify-center">
+              <svg class="w-12 h-12" style="color: #D97706;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            </div>
+          </div>
+          <div class="p-5 space-y-2">
+            <span class="inline-block px-2.5 py-0.5 text-xs font-medium rounded-full" style="background-color: #FFF7ED; color: #C2410C;">ガジェット</span>
+            <h3 class="font-bold leading-snug" style="color: #292524;">【2026年版】在宅ワークが劇的に変わるモニターライト5選</h3>
+            <p class="text-sm leading-relaxed" style="color: #78716C;">目の疲れを軽減し、デスク環境を快適にするモニターライトを徹底比較。実際に1ヶ月使い込んだ結果をお届け。</p>
+            <time class="text-xs" style="color: #A8A29E;">2026.03.10</time>
+          </div>
+        </article>
+        <article class="group bg-white rounded-2xl overflow-hidden shadow-sm border border-orange-100/50">
+          <div class="aspect-[4/3] overflow-hidden" style="background: linear-gradient(135deg, #D1FAE5, #FEF3C7);">
+            <div class="w-full h-full flex items-center justify-center">
+              <svg class="w-12 h-12" style="color: #059669;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0a1 1 0 01-1-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 01-1 1"/></svg>
+            </div>
+          </div>
+          <div class="p-5 space-y-2">
+            <span class="inline-block px-2.5 py-0.5 text-xs font-medium rounded-full" style="background-color: #FFF7ED; color: #C2410C;">生活雑貨</span>
+            <h3 class="font-bold leading-snug" style="color: #292524;">無印良品を超えた？話題のマグネット収納を全力レビュー</h3>
+            <p class="text-sm leading-relaxed" style="color: #78716C;">SNSで3万いいねを集めた話題のマグネット収納シリーズ。キッチン・浴室で実際に使ってみた本音レポート。</p>
+            <time class="text-xs" style="color: #A8A29E;">2026.03.07</time>
+          </div>
+        </article>
+        <article class="group bg-white rounded-2xl overflow-hidden shadow-sm border border-orange-100/50">
+          <div class="aspect-[4/3] overflow-hidden" style="background: linear-gradient(135deg, #FEE2E2, #FECACA);">
+            <div class="w-full h-full flex items-center justify-center">
+              <svg class="w-12 h-12" style="color: #DC2626;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+            </div>
+          </div>
+          <div class="p-5 space-y-2">
+            <span class="inline-block px-2.5 py-0.5 text-xs font-medium rounded-full" style="background-color: #FFF7ED; color: #C2410C;">キッチン</span>
+            <h3 class="font-bold leading-snug" style="color: #292524;">時短の神器。全自動コーヒーメーカー3機種を比較した結論</h3>
+            <p class="text-sm leading-relaxed" style="color: #78716C;">豆挽きから抽出まで全自動のコーヒーメーカーを3ヶ月間使い比べ。味・手入れ・コスパの総合評価を公開。</p>
+            <time class="text-xs" style="color: #A8A29E;">2026.03.03</time>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Amazon Product Card -->
+    <section class="max-w-5xl mx-auto px-4 md:px-8 pb-16">
+      <div class="bg-white border border-orange-100 rounded-2xl p-5 md:p-6 flex flex-col md:flex-row gap-5 md:gap-8 items-center shadow-sm">
+        <div class="w-full md:w-48 h-48 rounded-xl flex items-center justify-center flex-shrink-0" style="background-color: #FFF7ED;">
+          <svg class="w-16 h-16" style="color: #D6D3D1;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+        </div>
+        <div class="flex-1 text-center md:text-left">
+          <span class="text-xs mb-1 block" style="color: #A8A29E;">PR - Amazon アフィリエイト</span>
+          <h3 class="font-bold text-lg mb-2" style="color: #292524;">BenQ ScreenBar Halo モニターライト</h3>
+          <div class="flex items-center justify-center md:justify-start gap-2 mb-2">
+            <span class="stars text-sm">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+            <span class="text-sm" style="color: #78716C;">(4.7 / 1,284件)</span>
+          </div>
+          <p class="text-sm mb-4 leading-relaxed" style="color: #78716C;">自動調光＆間接照明モード搭載。モニターに反射しない非対称光学設計で、長時間作業でも目が疲れにくい。</p>
+          <div class="flex items-center justify-center md:justify-start gap-4">
+            <span class="text-2xl font-bold" style="color: #292524;">&yen;15,900</span>
+            <a href="#" class="inline-flex items-center gap-2 px-6 py-2.5 text-white text-sm font-semibold rounded-lg transition shadow-sm hover:opacity-90" style="background-color: #C2410C;">
+              Amazonで見る
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- THEME 3: Cool Tech -->
+<!-- ============================================================ -->
+<div id="theme-3" class="theme-panel">
+  <div class="max-w-6xl mx-auto px-4 py-4">
+    <div class="text-center mb-4 py-2 px-4 bg-blue-50 rounded-lg border border-blue-200">
+      <span class="font-bold text-blue-800">Theme 3: Cool Tech</span>
+      <span class="text-blue-700 text-sm ml-2">- ダークグレー基調 + ブルー。ガジェット感のあるモダンテクノロジーデザイン</span>
+    </div>
+  </div>
+
+  <div style="background-color: #111827;" class="min-h-screen">
+    <!-- Header -->
+    <header style="background-color: #1F2937;" class="border-b border-gray-700/50">
+      <div class="max-w-5xl mx-auto px-4 md:px-8 py-4 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background-color: #2563EB;">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+          </div>
+          <span class="text-xl font-bold text-white">Mono<span style="color: #60A5FA;">Pita</span></span>
+        </div>
+        <nav class="hidden md:flex items-center gap-8 text-sm text-gray-400">
+          <a href="#" class="hover:text-blue-400 transition">ホーム</a>
+          <a href="#" class="hover:text-blue-400 transition">ガジェット</a>
+          <a href="#" class="hover:text-blue-400 transition">生活雑貨</a>
+          <a href="#" class="hover:text-blue-400 transition">キッチン</a>
+          <a href="#" class="hover:text-blue-400 transition">アウトドア</a>
+        </nav>
+        <button class="md:hidden text-gray-400">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="py-16 md:py-24" style="background: linear-gradient(135deg, #111827 0%, #1E3A5F 50%, #111827 100%);">
+      <div class="max-w-5xl mx-auto px-4 md:px-8 text-center">
+        <p class="text-sm font-medium tracking-widest mb-4" style="color: #60A5FA;">MONOPITA - LIFESTYLE GOODS & GADGETS</p>
+        <h1 class="text-3xl md:text-5xl font-bold mb-6 leading-tight text-white">あなたの暮らしに、<br>ぴったりのモノを。</h1>
+        <p class="text-base md:text-lg max-w-xl mx-auto leading-relaxed text-gray-400">本当に使って良かったモノだけを厳選レビュー。<br class="hidden md:block">暮らしをアップグレードするアイテムをお届けします。</p>
+      </div>
+    </section>
+
+    <!-- Article Cards -->
+    <section class="max-w-5xl mx-auto px-4 md:px-8 py-12 md:py-16">
+      <h2 class="text-xl font-bold mb-8 text-white">最新レビュー</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+        <article class="group rounded-2xl overflow-hidden border border-gray-700/50" style="background-color: #1F2937;">
+          <div class="aspect-[4/3] overflow-hidden" style="background: linear-gradient(135deg, #1E3A5F, #1E293B);">
+            <div class="w-full h-full flex items-center justify-center">
+              <svg class="w-12 h-12 text-blue-400/50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            </div>
+          </div>
+          <div class="p-5 space-y-2">
+            <span class="inline-block px-2.5 py-0.5 text-xs font-medium rounded-full" style="background-color: rgba(37,99,235,0.15); color: #60A5FA;">ガジェット</span>
+            <h3 class="font-bold text-white leading-snug group-hover:text-blue-400 transition">【2026年版】在宅ワークが劇的に変わるモニターライト5選</h3>
+            <p class="text-sm text-gray-400 leading-relaxed">目の疲れを軽減し、デスク環境を快適にするモニターライトを徹底比較。実際に1ヶ月使い込んだ結果をお届け。</p>
+            <time class="text-xs text-gray-500">2026.03.10</time>
+          </div>
+        </article>
+        <article class="group rounded-2xl overflow-hidden border border-gray-700/50" style="background-color: #1F2937;">
+          <div class="aspect-[4/3] overflow-hidden" style="background: linear-gradient(135deg, #064E3B, #1E293B);">
+            <div class="w-full h-full flex items-center justify-center">
+              <svg class="w-12 h-12 text-emerald-400/50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0a1 1 0 01-1-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 01-1 1"/></svg>
+            </div>
+          </div>
+          <div class="p-5 space-y-2">
+            <span class="inline-block px-2.5 py-0.5 text-xs font-medium rounded-full" style="background-color: rgba(37,99,235,0.15); color: #60A5FA;">生活雑貨</span>
+            <h3 class="font-bold text-white leading-snug group-hover:text-blue-400 transition">無印良品を超えた？話題のマグネット収納を全力レビュー</h3>
+            <p class="text-sm text-gray-400 leading-relaxed">SNSで3万いいねを集めた話題のマグネット収納シリーズ。キッチン・浴室で実際に使ってみた本音レポート。</p>
+            <time class="text-xs text-gray-500">2026.03.07</time>
+          </div>
+        </article>
+        <article class="group rounded-2xl overflow-hidden border border-gray-700/50" style="background-color: #1F2937;">
+          <div class="aspect-[4/3] overflow-hidden" style="background: linear-gradient(135deg, #4C1D95, #1E293B);">
+            <div class="w-full h-full flex items-center justify-center">
+              <svg class="w-12 h-12 text-purple-400/50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+            </div>
+          </div>
+          <div class="p-5 space-y-2">
+            <span class="inline-block px-2.5 py-0.5 text-xs font-medium rounded-full" style="background-color: rgba(37,99,235,0.15); color: #60A5FA;">キッチン</span>
+            <h3 class="font-bold text-white leading-snug group-hover:text-blue-400 transition">時短の神器。全自動コーヒーメーカー3機種を比較した結論</h3>
+            <p class="text-sm text-gray-400 leading-relaxed">豆挽きから抽出まで全自動のコーヒーメーカーを3ヶ月間使い比べ。味・手入れ・コスパの総合評価を公開。</p>
+            <time class="text-xs text-gray-500">2026.03.03</time>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Amazon Product Card -->
+    <section class="max-w-5xl mx-auto px-4 md:px-8 pb-16">
+      <div class="rounded-2xl p-5 md:p-6 flex flex-col md:flex-row gap-5 md:gap-8 items-center border border-gray-700/50" style="background-color: #1F2937;">
+        <div class="w-full md:w-48 h-48 rounded-xl flex items-center justify-center flex-shrink-0" style="background-color: #111827;">
+          <svg class="w-16 h-16 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+        </div>
+        <div class="flex-1 text-center md:text-left">
+          <span class="text-xs text-gray-500 mb-1 block">PR - Amazon アフィリエイト</span>
+          <h3 class="font-bold text-white text-lg mb-2">BenQ ScreenBar Halo モニターライト</h3>
+          <div class="flex items-center justify-center md:justify-start gap-2 mb-2">
+            <span class="stars text-sm">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+            <span class="text-sm text-gray-400">(4.7 / 1,284件)</span>
+          </div>
+          <p class="text-sm text-gray-400 mb-4 leading-relaxed">自動調光＆間接照明モード搭載。モニターに反射しない非対称光学設計で、長時間作業でも目が疲れにくい。</p>
+          <div class="flex items-center justify-center md:justify-start gap-4">
+            <span class="text-2xl font-bold text-white">&yen;15,900</span>
+            <a href="#" class="inline-flex items-center gap-2 px-6 py-2.5 text-white text-sm font-semibold rounded-lg transition shadow-sm hover:opacity-90" style="background-color: #2563EB;">
+              Amazonで見る
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- THEME 4: Soft Pastel -->
+<!-- ============================================================ -->
+<div id="theme-4" class="theme-panel">
+  <div class="max-w-6xl mx-auto px-4 py-4">
+    <div class="text-center mb-4 py-2 px-4 bg-pink-50 rounded-lg border border-pink-200">
+      <span class="font-bold text-pink-700">Theme 4: Soft Pastel</span>
+      <span class="text-pink-600 text-sm ml-2">- ライトパープル/ラベンダー基調 + コーラルピンク。柔らかく親しみやすいデザイン</span>
+    </div>
+  </div>
+
+  <div style="background-color: #FAF5FF;" class="min-h-screen">
+    <!-- Header -->
+    <header class="bg-white/70 backdrop-blur-sm border-b border-purple-100">
+      <div class="max-w-5xl mx-auto px-4 md:px-8 py-4 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-full flex items-center justify-center" style="background: linear-gradient(135deg, #F472B6, #C084FC);">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+          </div>
+          <span class="text-xl font-bold" style="color: #581C87;">Mono<span style="color: #F472B6;">Pita</span></span>
+        </div>
+        <nav class="hidden md:flex items-center gap-8 text-sm" style="color: #7C3AED;">
+          <a href="#" class="hover:opacity-70 transition">ホーム</a>
+          <a href="#" class="hover:opacity-70 transition">ガジェット</a>
+          <a href="#" class="hover:opacity-70 transition">生活雑貨</a>
+          <a href="#" class="hover:opacity-70 transition">キッチン</a>
+          <a href="#" class="hover:opacity-70 transition">アウトドア</a>
+        </nav>
+        <button class="md:hidden" style="color: #7C3AED;">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="py-16 md:py-24" style="background: linear-gradient(135deg, #FAF5FF 0%, #FDF2F8 30%, #EDE9FE 70%, #FAF5FF 100%);">
+      <div class="max-w-5xl mx-auto px-4 md:px-8 text-center">
+        <p class="text-sm font-medium tracking-widest mb-4" style="color: #F472B6;">MONOPITA - LIFESTYLE GOODS & GADGETS</p>
+        <h1 class="text-3xl md:text-5xl font-bold mb-6 leading-tight" style="color: #581C87;">あなたの暮らしに、<br>ぴったりのモノを。</h1>
+        <p class="text-base md:text-lg max-w-xl mx-auto leading-relaxed" style="color: #9CA3AF;">本当に使って良かったモノだけを厳選レビュー。<br class="hidden md:block">暮らしをアップグレードするアイテムをお届けします。</p>
+      </div>
+    </section>
+
+    <!-- Article Cards -->
+    <section class="max-w-5xl mx-auto px-4 md:px-8 py-12 md:py-16">
+      <h2 class="text-xl font-bold mb-8" style="color: #581C87;">最新レビュー</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+        <article class="group bg-white rounded-2xl overflow-hidden shadow-sm border border-purple-100">
+          <div class="aspect-[4/3] overflow-hidden" style="background: linear-gradient(135deg, #F5D0FE, #FBCFE8);">
+            <div class="w-full h-full flex items-center justify-center">
+              <svg class="w-12 h-12" style="color: #D946EF;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            </div>
+          </div>
+          <div class="p-5 space-y-2">
+            <span class="inline-block px-2.5 py-0.5 text-xs font-medium rounded-full" style="background-color: #FDF2F8; color: #EC4899;">ガジェット</span>
+            <h3 class="font-bold leading-snug" style="color: #581C87;">【2026年版】在宅ワークが劇的に変わるモニターライト5選</h3>
+            <p class="text-sm leading-relaxed" style="color: #9CA3AF;">目の疲れを軽減し、デスク環境を快適にするモニターライトを徹底比較。実際に1ヶ月使い込んだ結果をお届け。</p>
+            <time class="text-xs" style="color: #C4B5FD;">2026.03.10</time>
+          </div>
+        </article>
+        <article class="group bg-white rounded-2xl overflow-hidden shadow-sm border border-purple-100">
+          <div class="aspect-[4/3] overflow-hidden" style="background: linear-gradient(135deg, #DDD6FE, #E9D5FF);">
+            <div class="w-full h-full flex items-center justify-center">
+              <svg class="w-12 h-12" style="color: #8B5CF6;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0a1 1 0 01-1-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 01-1 1"/></svg>
+            </div>
+          </div>
+          <div class="p-5 space-y-2">
+            <span class="inline-block px-2.5 py-0.5 text-xs font-medium rounded-full" style="background-color: #FDF2F8; color: #EC4899;">生活雑貨</span>
+            <h3 class="font-bold leading-snug" style="color: #581C87;">無印良品を超えた？話題のマグネット収納を全力レビュー</h3>
+            <p class="text-sm leading-relaxed" style="color: #9CA3AF;">SNSで3万いいねを集めた話題のマグネット収納シリーズ。キッチン・浴室で実際に使ってみた本音レポート。</p>
+            <time class="text-xs" style="color: #C4B5FD;">2026.03.07</time>
+          </div>
+        </article>
+        <article class="group bg-white rounded-2xl overflow-hidden shadow-sm border border-purple-100">
+          <div class="aspect-[4/3] overflow-hidden" style="background: linear-gradient(135deg, #FECDD3, #FDE68A);">
+            <div class="w-full h-full flex items-center justify-center">
+              <svg class="w-12 h-12" style="color: #F43F5E;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+            </div>
+          </div>
+          <div class="p-5 space-y-2">
+            <span class="inline-block px-2.5 py-0.5 text-xs font-medium rounded-full" style="background-color: #FDF2F8; color: #EC4899;">キッチン</span>
+            <h3 class="font-bold leading-snug" style="color: #581C87;">時短の神器。全自動コーヒーメーカー3機種を比較した結論</h3>
+            <p class="text-sm leading-relaxed" style="color: #9CA3AF;">豆挽きから抽出まで全自動のコーヒーメーカーを3ヶ月間使い比べ。味・手入れ・コスパの総合評価を公開。</p>
+            <time class="text-xs" style="color: #C4B5FD;">2026.03.03</time>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Amazon Product Card -->
+    <section class="max-w-5xl mx-auto px-4 md:px-8 pb-16">
+      <div class="bg-white border border-purple-100 rounded-2xl p-5 md:p-6 flex flex-col md:flex-row gap-5 md:gap-8 items-center shadow-sm">
+        <div class="w-full md:w-48 h-48 rounded-xl flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, #FDF2F8, #EDE9FE);">
+          <svg class="w-16 h-16" style="color: #E9D5FF;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+        </div>
+        <div class="flex-1 text-center md:text-left">
+          <span class="text-xs mb-1 block" style="color: #C4B5FD;">PR - Amazon アフィリエイト</span>
+          <h3 class="font-bold text-lg mb-2" style="color: #581C87;">BenQ ScreenBar Halo モニターライト</h3>
+          <div class="flex items-center justify-center md:justify-start gap-2 mb-2">
+            <span class="stars text-sm">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+            <span class="text-sm" style="color: #9CA3AF;">(4.7 / 1,284件)</span>
+          </div>
+          <p class="text-sm mb-4 leading-relaxed" style="color: #9CA3AF;">自動調光＆間接照明モード搭載。モニターに反射しない非対称光学設計で、長時間作業でも目が疲れにくい。</p>
+          <div class="flex items-center justify-center md:justify-start gap-4">
+            <span class="text-2xl font-bold" style="color: #581C87;">&yen;15,900</span>
+            <a href="#" class="inline-flex items-center gap-2 px-6 py-2.5 text-white text-sm font-semibold rounded-lg transition shadow-sm hover:opacity-90" style="background: linear-gradient(135deg, #F472B6, #C084FC);">
+              Amazonで見る
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<script>
+const tabColors = {
+  1: { bg: 'bg-teal-600', text: 'text-white' },
+  2: { bg: '', text: 'text-white', style: 'background-color:#C2410C;color:white;' },
+  3: { bg: '', text: 'text-white', style: 'background-color:#2563EB;color:white;' },
+  4: { bg: '', text: 'text-white', style: 'background-color:#F472B6;color:white;' },
+};
+
+function switchTheme(num) {
+  // Hide all panels
+  document.querySelectorAll('.theme-panel').forEach(p => p.classList.remove('active'));
+  // Show selected
+  document.getElementById('theme-' + num).classList.add('active');
+
+  // Update tabs
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.classList.remove('active-tab', 'bg-teal-600', 'text-white', 'shadow-md');
+    btn.classList.add('bg-gray-200', 'text-gray-600');
+    btn.removeAttribute('style');
+  });
+
+  const activeBtn = document.getElementById('tab-' + num);
+  activeBtn.classList.remove('bg-gray-200', 'text-gray-600');
+  activeBtn.classList.add('active-tab', 'shadow-md');
+
+  if (num === 1) {
+    activeBtn.classList.add('bg-teal-600', 'text-white');
+  } else {
+    activeBtn.setAttribute('style', tabColors[num].style);
+  }
+
+  // Scroll to top of theme content
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+
+</body>
+</html>

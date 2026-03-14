@@ -1,0 +1,37 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE } from '../consts';
+---
+
+<!doctype html>
+<html lang="ja">
+  <head>
+    <BaseHead title={`運営者情報 | ${SITE_TITLE}`} description="モノピタの運営者情報・免責事項" />
+  </head>
+  <body>
+    <Header />
+    <main class="max-w-3xl mx-auto px-4 sm:px-6 py-12">
+      <h1 class="text-2xl font-bold text-gray-900 mb-8">運営者情報</h1>
+      <div class="prose">
+        <h2>サイトについて</h2>
+        <p>
+          モノピタは「あなたの暮らしに、ぴったりのモノを。」をコンセプトに、
+          暮らしを便利にするガジェットや日用品を紹介する情報サイトです。
+        </p>
+
+        <h2>免責事項</h2>
+        <p>
+          当サイトに掲載されている情報は、可能な限り正確な情報を提供するよう努めておりますが、
+          正確性や安全性を保証するものではありません。商品のご購入は、各販売サイトの情報をご確認の上、ご自身の判断でお願いいたします。
+        </p>
+        <p>
+          当サイトはAmazonアソシエイト・プログラムに参加しています。
+          当サイトのリンクを経由して商品を購入された場合、当サイトに紹介料が支払われることがあります。
+        </p>
+      </div>
+    </main>
+    <Footer />
+  </body>
+</html>

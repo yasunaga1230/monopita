@@ -1,0 +1,36 @@
+---
+import { SITE_TITLE } from '../consts';
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-gray-50 border-t border-gray-100 mt-16">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div>
+        <span class="text-xl font-bold text-primary">MonoPita</span>
+        <p class="mt-2 text-sm text-gray-500">あなたの暮らしに、ぴったりのモノを。</p>
+      </div>
+      <div>
+        <h3 class="text-sm font-semibold text-gray-900 mb-3">カテゴリ</h3>
+        <ul class="space-y-2 list-none p-0">
+          <li><a href="/category/desk" class="text-sm text-gray-500 hover:text-primary no-underline">デスク周り・PC周辺</a></li>
+          <li><a href="/category/kitchen" class="text-sm text-gray-500 hover:text-primary no-underline">キッチン便利グッズ</a></li>
+          <li><a href="/category/cleaning" class="text-sm text-gray-500 hover:text-primary no-underline">掃除・収納</a></li>
+          <li><a href="/category/smartphone" class="text-sm text-gray-500 hover:text-primary no-underline">スマホ・モバイル</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-sm font-semibold text-gray-900 mb-3">サイト情報</h3>
+        <ul class="space-y-2 list-none p-0">
+          <li><a href="/about" class="text-sm text-gray-500 hover:text-primary no-underline">運営者情報</a></li>
+          <li><a href="/privacy" class="text-sm text-gray-500 hover:text-primary no-underline">プライバシーポリシー</a></li>
+          <li><a href="/contact" class="text-sm text-gray-500 hover:text-primary no-underline">お問い合わせ</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="mt-8 pt-8 border-t border-gray-200 text-center">
+      <p class="text-sm text-gray-400">&copy; {currentYear} {SITE_TITLE}. All rights reserved.</p>
+      <p class="text-xs text-gray-400 mt-1">当サイトはAmazonアソシエイト・プログラムに参加しています。</p>
+    </div>
+  </div>
+</footer>
