@@ -7,17 +7,17 @@ pubDate: "2026-03-14"
 heroImage: "/images/posts/desk-light-bar.jpg"
 products:
   - name: "BenQ ScreenBar Halo モニターライト"
-    asin: "B0B7DNKLYB"
+    asin: "B08WT889V3"
     price: "¥19,900"
     description: "背面ライト付きで目の疲れを軽減。無線リモコンで明るさ・色温度を調整"
     rating: 4.5
-  - name: "Quntis モニターライト 40cm"
+  - name: "Quntis モニターライト 52cm"
     asin: "B08DKQ3JG1"
-    price: "¥3,999"
+    price: "¥4,000"
     description: "コスパ最強のモニターライトバー。USB給電で手軽に導入できる"
     rating: 4.2
-  - name: "Xiaomi モニターライトバー"
-    asin: "B09MFZB3XY"
+  - name: "Xiaomi Mijia モニターライトバー"
+    asin: "B09SX32TG5"
     price: "¥5,980"
     description: "ミニマルデザインでどんなデスクにもマッチ。ワイヤレスリモコン付き"
     rating: 4.3

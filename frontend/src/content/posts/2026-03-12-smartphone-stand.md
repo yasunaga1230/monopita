@@ -6,18 +6,18 @@ tags: ["スマホスタンド", "MagSafe", "iPhone"]
 pubDate: "2026-03-12"
 heroImage: "/images/posts/smartphone-stand.jpg"
 products:
-  - name: "Anker MagGo 3-in-1 充電スタンド"
-    asin: "B0C9DNYKMJ"
-    price: "¥8,990"
+  - name: "Anker MagGo 3-in-1 ワイヤレス充電ステーション"
+    asin: "B0CM66LY5F"
+    price: "¥10,990"
     description: "iPhone・Apple Watch・AirPodsを同時充電。折りたたみ式で持ち運びも◎"
     rating: 4.6
-  - name: "MOFT Snap-On スマホスタンド"
-    asin: "B09HGDY9PJ"
+  - name: "MOFT Snap-On スマホスタンド MagSafe対応"
+    asin: "B0CM8JCCZ5"
     price: "¥3,480"
     description: "超薄型でスマホに貼り付け。縦横両方のスタンドとカードケースを兼用"
     rating: 4.3
-  - name: "Lamicall MagSafe対応スタンド"
-    asin: "B0BXKM8ZK2"
+  - name: "Lamicall MagSafe対応 スマホスタンド アルミ"
+    asin: "B0C8M9THXZ"
     price: "¥2,399"
     description: "アルミ合金の高級感。角度調整自由自在でビデオ通話にも最適"
     rating: 4.4

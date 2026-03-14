@@ -6,18 +6,18 @@ tags: ["キッチン", "タイマー", "料理グッズ"]
 pubDate: "2026-03-13"
 heroImage: "/images/posts/kitchen-timer.jpg"
 products:
-  - name: "タニタ デジタルタイマー TD-408"
-    asin: "B07QXKWQYP"
-    price: "¥1,280"
-    description: "大画面で見やすい。マグネット・スタンド・フック3WAY対応"
+  - name: "タニタ デジタルタイマー でかみえタイマー TD-384"
+    asin: "B000BHLSMQ"
+    price: "¥1,000"
+    description: "大画面で見やすい。マグネット付きで冷蔵庫にも貼れる"
     rating: 4.4
-  - name: "dretec キューブタイマー"
-    asin: "B07WR4DXVH"
-    price: "¥1,650"
-    description: "傾けるだけで計測スタート。5分・10分・15分・30分のプリセット"
+  - name: "dretec キュービックタイマー T-549"
+    asin: "B07FKQKC6L"
+    price: "¥1,200"
+    description: "傾けるだけで計測スタート。音と光でお知らせ、消音機能付き"
     rating: 4.1
-  - name: "BRUNO ダイヤルタイマー"
-    asin: "B08LGT2WDK"
+  - name: "BRUNO デジタルダイヤルタイマー"
+    asin: "B01GUYBYUE"
     price: "¥2,200"
     description: "レトロかわいいダイヤル式。インテリアとしても映えるデザイン"
     rating: 4.3
