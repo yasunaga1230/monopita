@@ -58,6 +58,7 @@ const posts = (await getCollection('posts')).sort(
             pubDate={post.data.pubDate}
             category={post.data.category}
             slug={post.id}
+            heroImage={post.data.heroImage}
           />
         ))}
       </div>

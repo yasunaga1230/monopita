@@ -4,6 +4,7 @@ description: "見た目も機能もこだわりたい方向け。マグネット
 category: "kitchen"
 tags: ["キッチン", "タイマー", "料理グッズ"]
 pubDate: "2026-03-13"
+heroImage: "/images/posts/kitchen-timer.jpg"
 products:
   - name: "タニタ デジタルタイマー TD-408"
     asin: "B07QXKWQYP"

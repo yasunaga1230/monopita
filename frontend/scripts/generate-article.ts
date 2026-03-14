@@ -9,6 +9,15 @@ if (!GEMINI_API_KEY) {
 
 const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent';
 
+const UNSPLASH_KEYWORDS: Record<string, string> = {
+  desk: 'desk setup workspace',
+  kitchen: 'kitchen cooking gadget',
+  cleaning: 'clean organized home',
+  smartphone: 'smartphone mobile technology',
+  seasonal: 'seasonal lifestyle',
+  other: 'home lifestyle minimal',
+};
+
 const CATEGORIES = [
   { slug: 'desk', name: 'デスク周り・PC周辺', themes: ['モニターアーム', 'キーボード', 'マウス', 'デスクマット', 'USBハブ', 'ケーブル整理', 'PCスタンド', 'Webカメラ', 'ヘッドセット', 'デスクライト'] },
   { slug: 'kitchen', name: 'キッチン便利グッズ', themes: ['電気ケトル', '保存容器', 'まな板', '調理器具', '水筒', '弁当箱', 'コーヒーグッズ', 'キッチンタオル', '食器', 'スパイスラック'] },
@@ -170,6 +179,38 @@ products:
 - 本文中で商品名に言及する際は自然な文脈で
 - 最後に「まとめ」セクションを必ず入れる`;
 
+  // Download hero image from Unsplash
+  const imageKeyword = UNSPLASH_KEYWORDS[targetCategorySlug] || 'lifestyle';
+  const imageFilename = `${dateStr}-${randomTheme.toLowerCase().replace(/[^a-z0-9]/g, '-')}.jpg`;
+  const imagePath = path.join(process.cwd(), 'public', 'images', 'posts', imageFilename);
+
+  fs.mkdirSync(path.dirname(imagePath), { recursive: true });
+
+  const UNSPLASH_IMAGES: Record<string, string> = {
+    desk: 'photo-1593062096033-9a26b09da705',
+    kitchen: 'photo-1556909114-f6e7ad7d3136',
+    cleaning: 'photo-1527515637462-cee1652e65de',
+    smartphone: 'photo-1511707171634-5f897ff02aa9',
+    seasonal: 'photo-1501426026826-31c667bdf23d',
+    other: 'photo-1484101403633-562f891dc89a',
+  };
+
+  console.log('Downloading hero image from Unsplash...');
+  try {
+    const photoId = UNSPLASH_IMAGES[targetCategorySlug] || UNSPLASH_IMAGES['other'];
+    const imgResponse = await fetch(
+      `https://images.unsplash.com/${photoId}?w=1200&h=630&fit=crop`
+    );
+    if (imgResponse.ok && imgResponse.headers.get('content-type')?.includes('image')) {
+      const buffer = Buffer.from(await imgResponse.arrayBuffer());
+      fs.writeFileSync(imagePath, buffer);
+      console.log(`Image saved: ${imagePath}`);
+    }
+  } catch (e) {
+    console.warn('Failed to download image, continuing without hero image');
+  }
+  const heroImageUrl = fs.existsSync(imagePath) ? `/images/posts/${imageFilename}` : '';
+
   console.log('Calling Gemini API...');
   const articleContent = await callGemini(prompt);
 
@@ -185,7 +226,15 @@ products:
   const filename = `${dateStr}-${slug}.md`;
   const filePath = path.join(process.cwd(), 'src', 'content', 'posts', filename);
 
-  const cleanedContent = articleContent.replace(/^```\w*\n?/, '').replace(/\n?```$/, '').trim();
+  let cleanedContent = articleContent.replace(/^```\w*\n?/, '').replace(/\n?```$/, '').trim();
+
+  // Insert heroImage into frontmatter if image was downloaded
+  if (heroImageUrl && cleanedContent.includes('pubDate:')) {
+    cleanedContent = cleanedContent.replace(
+      /pubDate: "([^"]+)"/,
+      `pubDate: "$1"\nheroImage: "${heroImageUrl}"`
+    );
+  }
 
   fs.writeFileSync(filePath, cleanedContent, 'utf-8');
   console.log(`Article saved: ${filePath}`);

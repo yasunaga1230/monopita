@@ -4,6 +4,7 @@ description: "iPhone・Android対応のMagSafe互換スマホスタンドを徹�
 category: "smartphone"
 tags: ["スマホスタンド", "MagSafe", "iPhone"]
 pubDate: "2026-03-12"
+heroImage: "/images/posts/smartphone-stand.jpg"
 products:
   - name: "Anker MagGo 3-in-1 充電スタンド"
     asin: "B0C9DNYKMJ"

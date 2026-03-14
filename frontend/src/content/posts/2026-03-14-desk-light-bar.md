@@ -4,6 +4,7 @@ description: "デスクの照明を見直すなら、モニターライトバー
 category: "desk"
 tags: ["モニターライト", "デスク環境", "在宅ワーク"]
 pubDate: "2026-03-14"
+heroImage: "/images/posts/desk-light-bar.jpg"
 products:
   - name: "BenQ ScreenBar Halo モニターライト"
     asin: "B0B7DNKLYB"

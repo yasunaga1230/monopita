@@ -9,7 +9,7 @@ import { CATEGORIES, type CategorySlug, SITE_TITLE } from '../consts';
 
 type Props = CollectionEntry<'posts'>['data'];
 
-const { title, description, pubDate, updatedDate, category, tags, products } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, category, tags, products } = Astro.props;
 const categoryName = CATEGORIES[category as CategorySlug] || category;
 ---
 
@@ -20,6 +20,17 @@ const categoryName = CATEGORIES[category as CategorySlug] || category;
   </head>
   <body>
     <Header />
+
+    {heroImage && (
+      <div class="w-full max-w-4xl mx-auto px-4 sm:px-6 mt-8">
+        <img
+          src={heroImage}
+          alt={title}
+          class="w-full h-auto rounded-xl object-cover aspect-[2/1]"
+        />
+      </div>
+    )}
+
     <main class="max-w-3xl mx-auto px-4 sm:px-6 py-8">
       <article>
         <div class="mb-8">
@@ -43,6 +54,14 @@ const categoryName = CATEGORIES[category as CategorySlug] || category;
           <p class="text-gray-500 text-base">{description}</p>
         </div>
 
+        {tags && tags.length > 0 && (
+          <div class="flex flex-wrap gap-2 mb-8">
+            {tags.map((tag) => (
+              <span class="text-xs text-gray-500 bg-gray-100 px-2.5 py-1 rounded-full">#{tag}</span>
+            ))}
+          </div>
+        )}
+
         <div class="prose">
           <slot />
         </div>
@@ -61,6 +80,13 @@ const categoryName = CATEGORIES[category as CategorySlug] || category;
             ))}
           </div>
         )}
+
+        <div class="mt-12 pt-8 border-t border-gray-200">
+          <p class="text-sm text-gray-400 text-center">
+            ※ 価格は記事公開時点のものです。最新の価格はAmazon商品ページでご確認ください。<br/>
+            ※ 当サイトはAmazonアソシエイト・プログラムに参加しています。
+          </p>
+        </div>
       </article>
     </main>
     <Footer />
