@@ -64,6 +64,24 @@
 
 スクリーンショット保存先: /tmp/bluelamp-screenshots/
 
+## CI/CD設定
+
+### GitHub Actions（PR時に自動実行）
+| チェック | コマンド |
+|---------|---------|
+| TypeScript | `npx tsc --noEmit` |
+| Lint | `npm run lint` |
+| Build | `npm run build` |
+
+### ブランチ戦略
+- `main`: 本番環境
+- `develop`: 開発統合ブランチ
+- `feature/*`: 機能開発ブランチ
+
+### リポジトリ
+- URL: https://github.com/yasunaga1230/monopita
+- 公開設定: Public
+
 ## 最新技術情報
 
 - PA-API 5.0は2026年4〜5月に廃止予定。Amazon Creators APIに移行が必要だが、本プロジェクトではURL構成方式（`?tag=`）を使うためAPI不要で影響なし
