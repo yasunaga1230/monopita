@@ -12,7 +12,7 @@ BlueLampでの開発は以下のフローに沿って進行します：
 | **Phase 3: フロントエンド基盤** | [x] | Astro+TypeScript+Tailwindの基盤構築 |
 | **Phase 4: ページ実装** | [x] | トップページ・記事詳細ページの実装 |
 | **Phase 5: 環境構築** | [x] | Gemini API・Cloudflare等の設定 |
-| **Phase 6: 記事生成パイプライン** | [ ] | GitHub Actions + AI記事自動生成の実装 |
+| **Phase 6: 記事生成パイプライン** | [x] | GitHub Actions + AI記事自動生成の実装 |
 | **Phase 7: デプロイメント** | [x] | Cloudflare Pagesへのデプロイ（monopita.pages.dev） |
 
 ### サポートツール（必要に応じて使用）
