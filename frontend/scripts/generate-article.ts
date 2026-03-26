@@ -214,19 +214,27 @@ products:
   for (let i = 0; i < photos.length; i++) {
     const imgFilename = `${dateStr}-${i + 1}.jpg`;
     const imgPath = path.join(imagesDir, imgFilename);
-    try {
-      const imgResponse = await fetch(
-        `https://images.unsplash.com/${photos[i]}?w=${i === 0 ? 1200 : 800}&h=${i === 0 ? 630 : 450}&fit=crop`
-      );
-      if (imgResponse.ok && imgResponse.headers.get('content-type')?.includes('image')) {
-        const buffer = Buffer.from(await imgResponse.arrayBuffer());
-        fs.writeFileSync(imgPath, buffer);
-        downloadedImages.push(`/images/posts/${imgFilename}`);
-        console.log(`Image ${i + 1} saved: ${imgPath}`);
+    let success = false;
+    for (let attempt = 0; attempt < 3 && !success; attempt++) {
+      try {
+        const imgResponse = await fetch(
+          `https://images.unsplash.com/${photos[i]}?w=${i === 0 ? 1200 : 800}&h=${i === 0 ? 630 : 450}&fit=crop`
+        );
+        if (imgResponse.ok && imgResponse.headers.get('content-type')?.includes('image')) {
+          const buffer = Buffer.from(await imgResponse.arrayBuffer());
+          if (buffer.length > 1000) {
+            fs.writeFileSync(imgPath, buffer);
+            downloadedImages.push(`/images/posts/${imgFilename}`);
+            console.log(`Image ${i + 1} saved: ${imgPath} (${buffer.length} bytes)`);
+            success = true;
+          }
+        }
+      } catch (e) {
+        console.warn(`Attempt ${attempt + 1} failed for image ${i + 1}`);
       }
-    } catch (e) {
-      console.warn(`Failed to download image ${i + 1}`);
+      if (!success && attempt < 2) await new Promise(r => setTimeout(r, 1000));
     }
+    if (!success) console.warn(`Could not download image ${i + 1} after 3 attempts`);
   }
   const heroImageUrl = downloadedImages[0] || '';
 
