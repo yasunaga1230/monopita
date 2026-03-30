@@ -1,7 +1,7 @@
 export const SITE_TITLE = 'モノピタ';
 export const SITE_DESCRIPTION = 'あなたの暮らしに、ぴったりのモノを。暮らしの便利グッズ＆ガジェット情報サイト';
 export const SITE_LANG = 'ja';
-export const AMAZON_ASSOCIATE_TAG = 'monopita-22';
+export const AMAZON_ASSOCIATE_TAG = 'monopita22-22';
 
 export const CATEGORIES = {
   desk: 'デスク周り・PC周辺',
